@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Contact">
+  <h1 class="text-4xl font-bold mb-4">Contact Me</h1>
+  <form name="contact" method="POST" data-netlify="true" class="space-y-4">
+    <input type="hidden" name="form-name" value="contact" />
+    <div>
+      <label class="block text-sm font-medium" for="name">Name</label>
+      <input class="w-full border rounded p-2" type="text" id="name" name="name" required />
+    </div>
+    <div>
+      <label class="block text-sm font-medium" for="email">Email</label>
+      <input class="w-full border rounded p-2" type="email" id="email" name="email" required />
+    </div>
+    <div>
+      <label class="block text-sm font-medium" for="message">Message</label>
+      <textarea class="w-full border rounded p-2" id="message" name="message" rows="5" required></textarea>
+    </div>
+    <button class="px-4 py-2 bg-blue-600 text-white rounded" type="submit">Send</button>
+  </form>
+</BaseLayout>

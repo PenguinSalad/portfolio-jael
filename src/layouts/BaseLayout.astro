@@ -1,0 +1,30 @@
+---
+import '../styles/global.css';
+const { title = "Jael Cervantes" } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="../styles/global.css" />
+  </head>
+  <body class="font-sans bg-gray-100 text-gray-900">
+    <header class="p-4 bg-white shadow">
+      <nav class="container mx-auto flex justify-between">
+        <a href="/" class="text-xl font-bold">My Art</a>
+        <div class="space-x-4">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/about" class="hover:underline">About</a>
+          <a href="/contact" class="hover:underline">Contact</a>
+        </div>
+      </nav>
+    </header>
+    <main class="container mx-auto my-8 px-4">
+      <slot />
+    </main>
+    <footer class="p-4 bg-white shadow text-center">
+      © {new Date().getFullYear()} Jael Cervantes
+    </footer>
+  </body>
+</html>
