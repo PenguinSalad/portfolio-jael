@@ -1,0 +1,57 @@
+---
+import sunSVG from "../assets/icons/sun.svg?raw";
+import moonSVG from "../assets/icons/moon.svg?raw";
+
+const icons = {
+  sun: sunSVG,
+  moon: moonSVG,
+};
+---
+
+<button
+  id="themeToggle"
+  aria-label="Toggle theme"
+  class="fixed bottom-4 right-4 p-2 w-50 h-50 bg-white dark:bg-gray-800 rounded-full shadow-lg transition-colors flex items-center justify-center"
+>
+  <span id="iconSun" class="hidden" set:html={icons.sun} />
+  <span id="iconMoon" class="" set:html={icons.moon} />
+</button>
+
+<script is:inline>
+  console.log("Script loaded...");
+
+  // Enable smooth transitions after first render
+  window.addEventListener("DOMContentLoaded", () => {
+    document.documentElement.classList.add("transition-enabled");
+  });
+
+  const getInitialTheme = () => {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      return "dark";
+    }
+    return "light";
+  };
+
+  const root = document.documentElement;
+  root.classList.toggle("dark", getInitialTheme() === "dark");
+  localStorage.setItem("theme", getInitialTheme());
+
+  const iconSun = document.getElementById("iconSun");
+  const iconMoon = document.getElementById("iconMoon");
+  const toggleBtn = document.getElementById("themeToggle");
+
+  console.log(toggleBtn);
+
+  toggleBtn.addEventListener("click", () => {
+    console.log("Button clicked");
+
+    const isDark = root.classList.toggle("dark");
+    localStorage.theme = isDark ? "dark" : "light";
+    iconSun.classList.toggle("hidden", isDark);
+    iconMoon.classList.toggle("hidden", !isDark);
+  });
+</script>
